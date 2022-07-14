@@ -4,7 +4,7 @@ const style = StyleSheet.create({
   container: {
     alignItems: 'center',
   },
-  back: {
+  return: {
     alignSelf: 'flex-start',
     justifyContent: 'center',
     alignItems: 'center',
@@ -25,6 +25,11 @@ const style = StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
     lineHeight: 24,
+    marginBottom: 2,
+  },
+  img: {
+    width: 65,
+    height: 65,
   },
   txtHumor: {
     fontSize: 20,
@@ -42,6 +47,9 @@ const style = StyleSheet.create({
     height: 158,
     borderRadius: 20,
     marginBottom: 21,
+    borderEndWidth: 2,
+    borderBottomWidth: 2,
+    borderColor: 'rgba(0,0,0,0.1)',
   },
   midContent: {
     alignItems: 'center',
@@ -67,6 +75,9 @@ const style = StyleSheet.create({
     borderRadius: 20,
     paddingVertical: 13,
     alignItems: 'center',
+    borderEndWidth: 2,
+    borderBottomWidth: 2,
+    borderColor: 'rgba(0,0,0,0.1)',
   },
   txtDescricao: {
     fontSize: 13,

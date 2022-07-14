@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import Atividade from '../Atividade';
@@ -31,21 +30,13 @@ const Card = ({emoji, dia, humor, hora, atividade, descricao}) => {
           color: color,
         })
       }>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          marginBottom: 15,
-        }}>
+      <View style={styles.cardCima}>
         <View>
-          <Image
-            source={emoji}
-            style={{width: 57, height: 57, marginEnd: 16}}
-          />
+          <Image source={emoji} style={styles.cardImg} />
         </View>
         <View>
           <Text style={styles.txtDia}>{dia}</Text>
-          <View style={{flexDirection: 'row', alignItems: 'baseline'}}>
+          <View style={styles.cardCimaContent}>
             <Text style={[styles.txtHumor, {color: color}]}>{humor}</Text>
             <Text style={styles.txtHora}>{hora}</Text>
           </View>

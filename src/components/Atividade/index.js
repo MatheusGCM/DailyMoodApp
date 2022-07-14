@@ -1,17 +1,11 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import styles from './style';
 
 const Atividade = ({atividade}) => {
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: 13,
-      }}>
+    <View style={styles.container}>
       <Icon name={atividade[0].icone} size={20} color="#111" />
       <Text style={styles.txtIcon}>{atividade[0].nome}</Text>
 
@@ -28,12 +22,4 @@ const Atividade = ({atividade}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  txtIcon: {
-    fontSize: 15,
-    color: '#000',
-    fontWeight: '600',
-    lineHeight: 18,
-  },
-});
 export default Atividade;

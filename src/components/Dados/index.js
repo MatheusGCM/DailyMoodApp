@@ -46,8 +46,7 @@ const Dados = [
         icone: 'chef-hat',
       },
     ],
-    descricao:
-      'Hoje foi um dia muito bom. Joguei futebol no parque, cozinhei uma lasanha para minha família. E à noite, fui à festa de aniversário do meu amigo.',
+    descricao: 'Lorem Ipsum Dolor Sit',
   },
   {
     id: 3,
@@ -69,8 +68,7 @@ const Dados = [
         icone: 'chef-hat',
       },
     ],
-    descricao:
-      'Hoje foi um dia muito bom. Joguei futebol no parque, cozinhei uma lasanha para minha família. E à noite, fui à festa de aniversário do meu amigo.',
+    descricao: 'Lorem Ipsum Dolor Sit',
   },
   {
     id: 4,
@@ -92,8 +90,7 @@ const Dados = [
         icone: 'chef-hat',
       },
     ],
-    descricao:
-      'Hoje foi um dia muito bom. Joguei futebol no parque, cozinhei uma lasanha para minha família. E à noite, fui à festa de aniversário do meu amigo.',
+    descricao: 'Lorem Ipsum Dolor Sit',
   },
   {
     id: 5,
@@ -115,8 +112,7 @@ const Dados = [
         icone: 'chef-hat',
       },
     ],
-    descricao:
-      'Hoje foi um dia muito bom. Joguei futebol no parque, cozinhei uma lasanha para minha família. E à noite, fui à festa de aniversário do meu amigo.',
+    descricao: 'Lorem Ipsum Dolor Sit',
   },
   {
     id: 6,
@@ -138,8 +134,7 @@ const Dados = [
         icone: 'chef-hat',
       },
     ],
-    descricao:
-      'Hoje foi um dia muito bom. Joguei futebol no parque, cozinhei uma lasanha para minha família. E à noite, fui à festa de aniversário do meu amigo.',
+    descricao: 'Lorem Ipsum Dolor Sit',
   },
 ];
 

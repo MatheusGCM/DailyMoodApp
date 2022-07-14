@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Text, View, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -9,7 +8,7 @@ const Details = ({route, navigation}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        style={styles.back}
+        style={styles.return}
         onPress={() => {
           navigation.navigate('Home');
         }}>
@@ -17,7 +16,7 @@ const Details = ({route, navigation}) => {
       </TouchableOpacity>
 
       <View style={styles.header}>
-        <Text style={[styles.txtHeader, {marginBottom: 2}]}>
+        <Text style={styles.txtHeader}>
           <IconFeather name="clock" size={15} color="#969696" />
           {route.params.hora}
         </Text>
@@ -27,7 +26,7 @@ const Details = ({route, navigation}) => {
         </Text>
       </View>
 
-      <Image source={route.params.emoji} style={{width: 65, height: 65}} />
+      <Image source={route.params.emoji} style={styles.img} />
       <Text style={[styles.txtHumor, {color: route.params.color}]}>
         {route.params.humor}
       </Text>

@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
+import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const New = () => {
@@ -15,27 +16,5 @@ const New = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  containerChild: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: '35%',
-    width: '100%',
-  },
-  txt: {
-    textAlign: 'center',
-    fontSize: 18,
-    fontWeight: '400',
-    color: '#ACACAC',
-    marginTop: 20,
-    lineHeight: 20,
-    width: 318,
-  },
-});
 
 export default New;
