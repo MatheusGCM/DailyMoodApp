@@ -1,4 +1,4 @@
-<h1>😀😂 Projeto inicial de um app desenvolvido em React Native 🤔😥</h1> 
+<h1>😀Projeto inicial de um app desenvolvido em React Native😀</h1> 
 
 <ul><i>
   <li>Compass</li>
