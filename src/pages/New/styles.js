@@ -17,7 +17,7 @@ const style = StyleSheet.create({
     color: '#ACACAC',
     marginTop: 20,
     lineHeight: 20,
-    width: 318,
+    marginHorizontal: '13%',
   },
 });
 

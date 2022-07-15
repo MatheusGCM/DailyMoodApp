@@ -10,7 +10,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
     width: 36,
     height: 36,
-    backgroundColor: '#DEE1F2',
+    backgroundColor: 'rgba(48, 79, 254, 0.1)',
     marginTop: 12,
     marginStart: 25,
     borderRadius: 10,
@@ -20,11 +20,16 @@ const style = StyleSheet.create({
     marginBottom: 30,
     marginTop: 15,
   },
+  direction: {
+    alignItems: 'baseline',
+    flexDirection: 'row',
+  },
   txtHeader: {
     color: '#969696',
     fontSize: 16,
     fontWeight: '400',
     lineHeight: 24,
+    marginStart: 3,
     marginBottom: 2,
   },
   img: {

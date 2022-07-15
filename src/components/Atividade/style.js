@@ -5,10 +5,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    marginBottom: 13,
+    marginBottom: 12,
   },
   txtIcon: {
-    fontSize: 15,
+    fontSize: 12,
     color: '#000',
     fontWeight: '600',
     lineHeight: 18,

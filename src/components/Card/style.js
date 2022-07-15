@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   cardCima: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 15,
+    marginBottom: 14,
   },
   cardImg: {
     width: 57,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     color: '#ACACAC',
     fontWeight: '400',
     lineHeight: 20,
-    paddingEnd: '14%',
+    paddingEnd: '17%',
     paddingStart: '2%',
   },
 });

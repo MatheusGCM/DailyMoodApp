@@ -16,14 +16,14 @@ const Details = ({route, navigation}) => {
       </TouchableOpacity>
 
       <View style={styles.header}>
-        <Text style={styles.txtHeader}>
+        <View style={styles.direction}>
           <IconFeather name="clock" size={15} color="#969696" />
-          {route.params.hora}
-        </Text>
-        <Text style={styles.txtHeader}>
+          <Text style={styles.txtHeader}>{route.params.hora}</Text>
+        </View>
+        <View style={styles.direction}>
           <IconFeather name="calendar" size={15} color="#969696" />
-          {route.params.dia}
-        </Text>
+          <Text style={styles.txtHeader}>{route.params.dia}</Text>
+        </View>
       </View>
 
       <Image source={route.params.emoji} style={styles.img} />

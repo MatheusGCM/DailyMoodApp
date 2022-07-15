@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     height: 46,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
     backgroundColor: '#C6CEFF',
     borderRadius: 10,
     marginTop: 47,
