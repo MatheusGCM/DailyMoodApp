@@ -11,4 +11,4 @@
   </i>
 </ul>
 
-<p><i>By Matheus Guilherme</i></p>
+<p><i>By Matheus Guilherme 😉</i></p>
