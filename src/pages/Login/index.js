@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  Text,
-  Alert,
-} from 'react-native';
+import {View, Image, TextInput, TouchableOpacity, Text} from 'react-native';
 import styles from './style';
 import {useNavigation} from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
@@ -18,7 +11,8 @@ const Login = () => {
   const [senha, setSenha] = useState('');
 
   const alerta = () => {
-    Alert.alert('ATENÇÃO!!', 'Preencha os campos.');
+    // Alert.alert('ATENÇÃO!!', 'Preencha os campos.');
+    return navigation.navigate('Home');
   };
   const entrar = () => {
     return navigation.navigate('Home');

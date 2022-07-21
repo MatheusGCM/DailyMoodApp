@@ -4,9 +4,10 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Login from '../pages/Login';
 import Home from '../pages/Home';
-import New from '../pages/New';
 import Sobre from '../pages/Sobre';
 import Details from '../pages/Details';
+import New from '../pages/New';
+import ActionModal from '../components/ActionModal';
 
 import ButtonTabs from '../components/ButtonTabs';
 
@@ -15,8 +16,7 @@ const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
   return (
-    <Tab.Navigator
-      initialRouteName="newScreen" //pagina inicial
+    <Tab.Navigator //pagina inicial
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color}) => {
           let iconName;
@@ -46,7 +46,16 @@ const Tabs = () => {
         tabBarInactiveTintColor: '#304FFE',
       })}>
       <Tab.Screen name="homeScreen" component={HomeStackScreen} />
-      <Tab.Screen name="newScreen" component={New} />
+      <Tab.Screen
+        name="newScreen"
+        component={New}
+        listeners={({navigation}) => ({
+          tabPress: e => {
+            e.preventDefault();
+            navigation.navigate('ActionModal');
+          },
+        })}
+      />
       <Tab.Screen name="sobreScren" component={Sobre} />
     </Tab.Navigator>
   );
@@ -68,6 +77,7 @@ const Routes = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Home" component={Tabs} />
+      <Stack.Screen name="ActionModal" component={ActionModal} />
     </Stack.Navigator>
   );
 };
