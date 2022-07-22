@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   flexDirection: {
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     justifyContent: 'space-between',
     width: '60%',
   },

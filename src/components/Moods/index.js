@@ -1,21 +1,29 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-const Moods = ({id, nome, img, onPress, selecionado}) => {
+const Moods = ({id, nome, img, selectMood, moodSelected}) => {
   return (
-    <TouchableOpacity activeOpacity={1} onPress={onPress}>
+    <TouchableOpacity
+      activeOpacity={1}
+      onPress={() =>
+        selectMood({
+          id,
+          nome,
+          img,
+        })
+      }>
       <View style={styles.container}>
         <View
           style={[
             styles.boxImg,
-            {backgroundColor: selecionado === id ? '#304FFE' : null},
+            {backgroundColor: moodSelected.id === id ? '#304FFE' : null},
           ]}>
           <Image source={img} style={styles.img} />
         </View>
         <Text
           style={[
             styles.txtMood,
-            {color: selecionado === id ? '#C801FA' : null},
+            {color: moodSelected.id === id ? '#C801FA' : null},
           ]}>
           {nome}
         </Text>

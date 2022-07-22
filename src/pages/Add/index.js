@@ -12,16 +12,45 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './style';
 import dadosMood from '../../mocks/dadosMood';
 import dadosAtividade from '../../mocks/dadosAtividades';
-import Moods from '../Moods';
-import Atv from '../Atv';
+import Moods from '../../components/Moods';
+import Atv from '../../components/Atv';
+import Data from '../../components/Dates';
 
-function ActionModal({navigation}) {
-  const [selecionado, setSelecionado] = useState(0);
+function Add({navigation}) {
+  const [moodSelected, setMoodSelected] = useState([]);
 
-  const selecionar = key => {
-    setSelecionado(key);
-    if (selecionado === key) {
-      setSelecionado(0);
+  const [atividades, setAtividades] = useState([...dadosAtividade]);
+  const [activitySelected, setActivitySelected] = useState([]);
+  const [cont, setCont] = useState(0);
+
+  const selectMood = moodSelecionado => {
+    setMoodSelected(moodSelecionado);
+  };
+  const selectActivity = atividadeSelecionada => {
+    if (atividadeSelecionada.selecionado) {
+      //Mudar o valor da atividade já selecionada para false
+      setAtividades(atividadesAnteriores =>
+        atividadesAnteriores.map(atividade => ({
+          ...atividade,
+          selecionado: !(
+            atividade.id === atividadeSelecionada.id || !atividade.selecionado
+          ),
+        })),
+      );
+      setCont(cont - 1);
+    } else {
+      if (cont < 3) {
+        //Selecionar até 3 atividades
+        setActivitySelected(atividadeSelecionada);
+        setAtividades(atividadesAnteriores =>
+          atividadesAnteriores.map(atividade => ({
+            ...atividade,
+            selecionado:
+              atividade.id === atividadeSelecionada.id || atividade.selecionado,
+          })),
+        );
+        setCont(cont + 1);
+      }
     }
   };
   return (
@@ -38,8 +67,7 @@ function ActionModal({navigation}) {
           <View style={styles.header}>
             <Text style={styles.txtMain}>Como você está?</Text>
             <View style={styles.flexDirection}>
-              <Text style={styles.date}>HOJE, 23 DE JANEIRO</Text>
-              <Text style={styles.date}>08:35</Text>
+              <Data />
             </View>
           </View>
           <View
@@ -54,12 +82,11 @@ function ActionModal({navigation}) {
               <Moods
                 key={item.id}
                 {...item}
-                onPress={() => selecionar(item.id)}
-                selecionado={selecionado}
+                selectMood={selectMood}
+                moodSelected={moodSelected}
               />
             ))}
           </View>
-
           <View
             style={{
               flexDirection: 'row',
@@ -72,8 +99,8 @@ function ActionModal({navigation}) {
               paddingVertical: 20,
               marginBottom: 20,
             }}>
-            {dadosAtividade.map(item => (
-              <Atv key={item.id} {...item} />
+            {atividades.map(item => (
+              <Atv key={item.id} {...item} selectActivity={selectActivity} />
             ))}
           </View>
 
@@ -120,4 +147,4 @@ function ActionModal({navigation}) {
   );
 }
 
-export default ActionModal;
+export default Add;

@@ -7,7 +7,7 @@ import Home from '../pages/Home';
 import Sobre from '../pages/Sobre';
 import Details from '../pages/Details';
 import New from '../pages/New';
-import ActionModal from '../components/ActionModal';
+import Add from '../pages/Add';
 
 import ButtonTabs from '../components/ButtonTabs';
 
@@ -52,7 +52,7 @@ const Tabs = () => {
         listeners={({navigation}) => ({
           tabPress: e => {
             e.preventDefault();
-            navigation.navigate('ActionModal');
+            navigation.navigate('Add');
           },
         })}
       />
@@ -77,7 +77,7 @@ const Routes = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Home" component={Tabs} />
-      <Stack.Screen name="ActionModal" component={ActionModal} />
+      <Stack.Screen name="Add" component={Add} />
     </Stack.Navigator>
   );
 };
