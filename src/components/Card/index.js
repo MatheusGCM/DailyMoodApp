@@ -3,11 +3,7 @@ import {Image, Text, TouchableOpacity, View} from 'react-native';
 import Atividade from '../Atividade';
 import styles from './style';
 
-import {useNavigation} from '@react-navigation/native';
-
-const Card = ({emoji, dia, humor, hora, atividade, descricao}) => {
-  const navigation = useNavigation();
-
+const Card = ({emoji, dia, humor, hora, atividade, descricao, navigation}) => {
   let color = '';
   if (humor === 'BEM') {
     color = '#E24B4B';

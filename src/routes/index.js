@@ -4,7 +4,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Login from '../pages/Login';
 import Home from '../pages/Home';
-import Sobre from '../pages/Sobre';
+import Profile from '../pages/Profile';
+import EditProfile from '../pages/EditProfile';
 import Details from '../pages/Details';
 import New from '../pages/New';
 import Add from '../pages/Add';
@@ -24,10 +25,10 @@ const Tabs = () => {
           if (route.name === 'homeScreen' || route.name === 'Details') {
             iconName = 'home';
             background = focused ? '#304FFE' : '#EBEEFF';
-          } else if (route.name === 'newScreen') {
+          } else if (route.name === 'addScreen') {
             iconName = 'plus';
             background = '#304FFE';
-          } else if (route.name === 'sobreScren') {
+          } else if (route.name === 'ProfileScren') {
             iconName = 'format-list-bulleted';
             background = focused ? '#304FFE' : '#EBEEFF';
           }
@@ -47,7 +48,7 @@ const Tabs = () => {
       })}>
       <Tab.Screen name="homeScreen" component={HomeStackScreen} />
       <Tab.Screen
-        name="newScreen"
+        name="addScreen"
         component={New}
         listeners={({navigation}) => ({
           tabPress: e => {
@@ -56,7 +57,7 @@ const Tabs = () => {
           },
         })}
       />
-      <Tab.Screen name="sobreScren" component={Sobre} />
+      <Tab.Screen name="ProfileScren" component={ProfileStackScreen} />
     </Tab.Navigator>
   );
 };
@@ -69,6 +70,17 @@ function HomeStackScreen() {
       <HomeStack.Screen name="Home" component={Home} />
       <HomeStack.Screen name="Details" component={Details} />
     </HomeStack.Navigator>
+  );
+}
+
+const ProfileStack = createNativeStackNavigator();
+
+function ProfileStackScreen() {
+  return (
+    <ProfileStack.Navigator screenOptions={{headerShown: false}}>
+      <ProfileStack.Screen name="Profile" component={Profile} />
+      <ProfileStack.Screen name="EditProfile" component={EditProfile} />
+    </ProfileStack.Navigator>
   );
 }
 

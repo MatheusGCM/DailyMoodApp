@@ -2,10 +2,12 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   card: {
+    alignSelf: 'center',
+    width: '90%',
     backgroundColor: 'white',
-    padding: 15,
+    paddingStart: 15,
+    paddingVertical: 18,
     paddingEnd: 65,
-    marginTop: 20,
     borderRadius: 20,
   },
   cardCima: {

@@ -54,13 +54,17 @@ function Add({navigation}) {
     }
   };
   return (
-    <Modal animationType={'slide'}>
+    <Modal
+      animationType={'fade'}
+      onRequestClose={() => {
+        navigation.goBack();
+      }}>
       <ScrollView>
         <View style={styles.container}>
           <TouchableOpacity
             style={styles.return}
             onPress={() => {
-              navigation.navigate('Home');
+              navigation.goBack();
             }}>
             <Icon name="close" size={20} color="#657BFB" />
           </TouchableOpacity>

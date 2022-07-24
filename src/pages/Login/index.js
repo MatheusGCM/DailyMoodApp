@@ -3,6 +3,7 @@ import {View, Image, TextInput, TouchableOpacity, Text} from 'react-native';
 import styles from './style';
 import {useNavigation} from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
+// import {login} from '../../Services/api';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -10,12 +11,15 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  const alerta = () => {
-    // Alert.alert('ATENÇÃO!!', 'Preencha os campos.');
-    return navigation.navigate('Home');
-  };
-  const entrar = () => {
-    return navigation.navigate('Home');
+  const entrar = async () => {
+    // const dados = {
+    //   email,
+    //   senha,
+    // };
+    // const resultado = await login(dados);
+    // if (resultado) {
+    navigation.navigate('Home');
+    // }
   };
 
   return (
@@ -45,9 +49,7 @@ const Login = () => {
           onChangeText={setSenha}
         />
 
-        <TouchableOpacity
-          style={styles.btnEntrar}
-          onPress={() => (email !== '' && senha !== '' ? entrar() : alerta())}>
+        <TouchableOpacity style={styles.btnEntrar} onPress={entrar}>
           <Text style={styles.txtEntrar}>ENTRAR</Text>
         </TouchableOpacity>
       </Animatable.View>
