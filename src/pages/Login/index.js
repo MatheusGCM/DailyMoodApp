@@ -12,11 +12,11 @@ import {
 } from 'react-native';
 import styles from './style';
 import * as Animatable from 'react-native-animatable';
-
 import {Context} from '../../context/authContext';
 
 const Login = ({navigation}) => {
   const {loginUser, setIsLogged} = useContext(Context);
+  const {state} = useContext(Context);
 
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -54,7 +54,6 @@ const Login = ({navigation}) => {
               secureTextEntry={true}
               placeholderTextColor="#969696"
               style={styles.input}
-              maxLength={8}
               value={senha}
               onChangeText={value => setSenha(value)}
               autoCapitalize="none"
@@ -63,7 +62,12 @@ const Login = ({navigation}) => {
           <TouchableOpacity
             style={styles.btnEntrar}
             onPress={() => {
-              if (email === '' || senha === '') {
+              if (
+                email === '' ||
+                senha === '' ||
+                email.length < 4 ||
+                senha.length < 4
+              ) {
                 Alert.alert('Atenção!!', 'Email ou senha inválidos');
                 return;
               }

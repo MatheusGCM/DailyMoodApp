@@ -4,6 +4,7 @@ import Atividade from '../Atividade';
 import styles from './style';
 import switchMoods from '../../function/switchMoods';
 import dateFormat from '../../function/dateFormat';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Card = ({
   id,

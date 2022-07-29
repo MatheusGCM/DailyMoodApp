@@ -24,7 +24,7 @@ const Moods = ({id, nome, txt, img, selectMood, moodSelected}) => {
         <Text
           style={[
             styles.txtMood,
-            {color: moodSelected.id === id ? '#C801FA' : null},
+            {color: moodSelected.id === id ? '#C801FA' : '#969696'},
           ]}>
           {nome}
         </Text>

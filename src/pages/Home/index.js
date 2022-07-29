@@ -23,7 +23,7 @@ const Home = ({navigation}) => {
   return dadosDaily ? (
     <FlatList
       contentContainerStyle={styles.contentContainer}
-      data={dadosDaily}
+      data={dadosDaily.reverse()}
       keyExtractor={item => String(item.id)}
       renderItem={renderItem}
       ItemSeparatorComponent={() => <View style={styles.separator} />}

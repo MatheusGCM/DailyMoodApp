@@ -9,11 +9,9 @@ import {
 import styles from './style';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useNavigation} from '@react-navigation/native';
 import {Context} from '../../context/authContext';
 
 const ModalExit = ({modalVisible, setModalVisible}) => {
-  const navigation = useNavigation();
   const {setIsLogged} = useContext(Context);
 
   return (

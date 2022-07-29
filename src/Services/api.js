@@ -41,6 +41,21 @@ export async function getDailyEntries() {
     console.warn(error);
   }
 }
+// export function deleteDaily(...id) {
+//   if (id.length > 1) {
+//     id.map(itemId =>
+//       api
+//         .delete(`daily_entries/${itemId}`)
+//         .then()
+//         .catch(error => console.warn(error)),
+//     );
+//   } else {
+//     api
+//       .delete(`daily_entries/${id}`)
+//       .then()
+//       .catch(error => console.warn(error));
+//   }
+// }
 export async function getActivities() {
   try {
     const {data} = await api.get('activities');

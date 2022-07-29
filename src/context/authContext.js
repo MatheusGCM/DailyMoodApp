@@ -3,12 +3,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import api from '../Services/api';
 
-import {useNavigation} from '@react-navigation/native';
+import {Alert} from 'react-native';
 
 const initialState = {
   isLogged: false,
 };
-
 const reducer = (state, action) => {
   switch (action.type) {
     case 'isLogged':
@@ -27,12 +26,25 @@ const loginUser = dispatch => {
         client_id: '3mGWGtxIEKyhq_HGG4cq6hsTOd_zn1SuTD3_cafjUPc',
         client_secret: '389JLi1Nd6DQ_soCI85C57ueTlMZ_JR7pRq6SJ0GaB0',
       });
+      api.defaults.headers.Authorization = `Bearer ${data.access_token}`;
       await AsyncStorage.setItem('token', data.access_token);
     } catch (e) {
-      console.log('Deu pau', e);
+      Alert.alert('Atenção!!', 'Email ou senha inválidos');
     }
   };
 };
+// const logoutUser = dispatch => {
+//   return async token => {
+//     try {
+//       await api.post('/oauth/revoke', {
+//         token: token,
+//       });
+//       api.defaults.headers.Authorization = `Basic ${token}`;
+//     } catch (e) {
+//       console.warn(e);
+//     }
+//   };
+// };
 const setIsLogged = dispatch => {
   return boolean => {
     dispatch({type: 'isLogged', payload: boolean});

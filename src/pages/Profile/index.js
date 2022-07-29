@@ -43,13 +43,13 @@ const Profile = ({navigation, route}) => {
           <Text style={styles.txtDados}>{user.email.toUpperCase()}</Text>
         </Text>
         <Text>
-          <Text style={styles.txtDadosBold}>GÊNERO:</Text>
+          <Text style={styles.txtDadosBold}>GÊNERO: </Text>
           <Text style={styles.txtDados}>
             {user.gender === 'male'
               ? 'MASCULINO'
               : user.gender === 'female'
               ? 'FEMININO'
-              : 'OUTRO'}
+              : 'OUTROS'}
           </Text>
         </Text>
         <Text>

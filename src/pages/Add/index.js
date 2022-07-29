@@ -157,7 +157,9 @@ function Add({navigation}) {
               marginBottom: 20,
             }}>
             <TextInput
+              style={{color: 'black'}}
               placeholder="Escreva aqui o que aconteceu hoje..."
+              placeholderTextColor="#969696"
               multiline
               maxLength={100}
               onChangeText={value => {

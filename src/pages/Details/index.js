@@ -28,7 +28,6 @@ const Details = ({route, navigation}) => {
     }
     componentDidMount();
   }, [id]);
-  console.log(daily.activities);
 
   return daily.activities ? (
     <View style={styles.container}>
