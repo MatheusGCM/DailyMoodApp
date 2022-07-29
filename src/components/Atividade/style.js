@@ -7,11 +7,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginBottom: 12,
   },
+  icon: {
+    marginHorizontal: 8,
+  },
   txtIcon: {
     fontSize: 12,
     color: '#000',
     fontWeight: '600',
     lineHeight: 18,
+    marginStart: 8,
   },
 });
 

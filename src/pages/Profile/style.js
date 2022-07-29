@@ -36,22 +36,6 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     color: '#000',
   },
-  buttonEditar: {
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: 52,
-    borderRadius: 6,
-    marginBottom: 16,
-    backgroundColor: '#304FFE',
-  },
-  txtButtonEditar: {
-    fontSize: 15,
-    fontWeight: '900',
-    lineHeight: 19,
-    color: 'white',
-  },
   buttonSair: {
     alignSelf: 'center',
     alignItems: 'center',
@@ -62,6 +46,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderWidth: 2,
     borderColor: '#000',
+    marginTop: 16,
   },
   txtButtonSair: {
     color: '#000',

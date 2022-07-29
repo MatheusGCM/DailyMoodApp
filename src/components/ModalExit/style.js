@@ -5,10 +5,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.7)',
     alignItems: 'center',
-  },
-  areaExit: {
-    width: '100%',
-    flex: 1,
+    justifyContent: 'center',
   },
   modalView: {
     backgroundColor: '#fff',

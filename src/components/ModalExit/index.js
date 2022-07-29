@@ -1,8 +1,21 @@
-import React from 'react';
-import {Modal, Text, TouchableOpacity, View} from 'react-native';
+import React, {useContext} from 'react';
+import {
+  Modal,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import styles from './style';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
+import {Context} from '../../context/authContext';
+
 const ModalExit = ({modalVisible, setModalVisible}) => {
+  const navigation = useNavigation();
+  const {setIsLogged} = useContext(Context);
+
   return (
     <Modal
       animationType="fade"
@@ -11,32 +24,28 @@ const ModalExit = ({modalVisible, setModalVisible}) => {
       onRequestClose={() => {
         setModalVisible(!modalVisible);
       }}>
-      <View style={styles.centeredView}>
-        <TouchableOpacity
-          activeOpacity={1}
-          style={styles.areaExit}
-          onPress={setModalVisible}
-        />
-        <View style={styles.modalView}>
-          <Text style={styles.modalTxtHeader}>Atenção</Text>
-          <Text style={styles.modalTxtMid}>Deseja mesmo sair?</Text>
-          <View style={styles.modalContainerFooter}>
-            <View style={styles.modalContentFooter}>
-              <TouchableOpacity onPress={setModalVisible}>
-                <Text style={styles.modalTxtFooter}>CANCELAR</Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={styles.modalTxtFooter}>SIM</Text>
-              </TouchableOpacity>
+      <TouchableWithoutFeedback onPress={setModalVisible} touchSoundDisabled>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalTxtHeader}>Atenção</Text>
+            <Text style={styles.modalTxtMid}>Deseja mesmo sair?</Text>
+            <View style={styles.modalContainerFooter}>
+              <View style={styles.modalContentFooter}>
+                <TouchableOpacity onPress={setModalVisible}>
+                  <Text style={styles.modalTxtFooter}>CANCELAR</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={async () => {
+                    await AsyncStorage.removeItem('token');
+                    setIsLogged(false);
+                  }}>
+                  <Text style={styles.modalTxtFooter}>SIM</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </View>
-        <TouchableOpacity
-          activeOpacity={1}
-          style={styles.areaExit}
-          onPress={setModalVisible}
-        />
-      </View>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 };

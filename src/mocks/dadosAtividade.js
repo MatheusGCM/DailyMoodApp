@@ -18,13 +18,13 @@ const dadosAtividade = [
     selecionado: false,
   },
   {
-    id: 5,
+    id: 4,
     nome: 'filmes e séries',
     icone: 'filmstrip',
     selecionado: false,
   },
   {
-    id: 4,
+    id: 5,
     nome: 'festa',
     icone: 'party-popper',
     selecionado: false,

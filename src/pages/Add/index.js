@@ -11,10 +11,12 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './style';
 import dadosMood from '../../mocks/dadosMood';
-import dadosAtividade from '../../mocks/dadosAtividades';
+import dadosAtividade from '../../mocks/dadosAtividade';
 import Moods from '../../components/Moods';
 import Atv from '../../components/Atv';
 import Data from '../../components/Dates';
+
+import {addDaily} from '../../Services/api';
 
 function Add({navigation}) {
   const [moodSelected, setMoodSelected] = useState([]);
@@ -22,9 +24,22 @@ function Add({navigation}) {
   const [atividades, setAtividades] = useState([...dadosAtividade]);
   const [activitySelected, setActivitySelected] = useState([]);
   const [cont, setCont] = useState(0);
+  const [daily, setDaily] = useState({
+    daily_entry: {
+      mood: '',
+      activity_ids: [],
+      description: '',
+    },
+  });
 
   const selectMood = moodSelecionado => {
     setMoodSelected(moodSelecionado);
+    setDaily(itens => ({
+      daily_entry: {
+        ...itens.daily_entry,
+        mood: moodSelecionado.txt,
+      },
+    }));
   };
   const selectActivity = atividadeSelecionada => {
     if (atividadeSelecionada.selecionado) {
@@ -37,11 +52,30 @@ function Add({navigation}) {
           ),
         })),
       );
+      const lista = activitySelected.filter(item => {
+        return item !== atividadeSelecionada.id;
+      });
+      setActivitySelected([...lista]);
+      setDaily(itens => ({
+        daily_entry: {
+          ...itens.daily_entry,
+          activity_ids: [...lista],
+        },
+      }));
       setCont(cont - 1);
     } else {
       if (cont < 3) {
         //Selecionar até 3 atividades
-        setActivitySelected(atividadeSelecionada);
+        setActivitySelected([...activitySelected, atividadeSelecionada.id]);
+        setDaily(itens => ({
+          daily_entry: {
+            ...itens.daily_entry,
+            activity_ids: [
+              ...itens.daily_entry.activity_ids,
+              atividadeSelecionada.id,
+            ],
+          },
+        }));
         setAtividades(atividadesAnteriores =>
           atividadesAnteriores.map(atividade => ({
             ...atividade,
@@ -53,6 +87,10 @@ function Add({navigation}) {
       }
     }
   };
+  const CreateDailyEntry = () => {
+    addDaily(daily);
+    navigation.navigate('Home');
+  };
   return (
     <Modal
       animationType={'fade'}
@@ -62,7 +100,7 @@ function Add({navigation}) {
       <ScrollView>
         <View style={styles.container}>
           <TouchableOpacity
-            style={styles.return}
+            style={styles.close}
             onPress={() => {
               navigation.goBack();
             }}>
@@ -122,6 +160,14 @@ function Add({navigation}) {
               placeholder="Escreva aqui o que aconteceu hoje..."
               multiline
               maxLength={100}
+              onChangeText={value => {
+                setDaily(itens => ({
+                  daily_entry: {
+                    ...itens.daily_entry,
+                    description: value,
+                  },
+                }));
+              }}
             />
           </View>
           <TouchableOpacity
@@ -134,7 +180,8 @@ function Add({navigation}) {
               borderRadius: 6,
               marginBottom: 30,
               backgroundColor: '#304FFE',
-            }}>
+            }}
+            onPress={() => CreateDailyEntry()}>
             <Text
               style={{
                 color: 'white',

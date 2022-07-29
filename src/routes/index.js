@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Context} from '../context/authContext';
 
+import Preload from '../pages/Preload';
 import Login from '../pages/Login';
 import Home from '../pages/Home';
 import Profile from '../pages/Profile';
 import EditProfile from '../pages/EditProfile';
 import Details from '../pages/Details';
-import New from '../pages/New';
 import Add from '../pages/Add';
 
 import ButtonTabs from '../components/ButtonTabs';
@@ -49,7 +50,7 @@ const Tabs = () => {
       <Tab.Screen name="homeScreen" component={HomeStackScreen} />
       <Tab.Screen
         name="addScreen"
-        component={New}
+        component={Add}
         listeners={({navigation}) => ({
           tabPress: e => {
             e.preventDefault();
@@ -85,11 +86,20 @@ function ProfileStackScreen() {
 }
 
 const Routes = () => {
+  const {state} = useContext(Context);
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Home" component={Tabs} />
-      <Stack.Screen name="Add" component={Add} />
+      {state.isLogged ? (
+        <>
+          <Stack.Screen name="Home" component={Tabs} />
+          <Stack.Screen name="Add" component={Add} />
+        </>
+      ) : (
+        <>
+          <Stack.Screen name="Preload" component={Preload} />
+          <Stack.Screen name="Login" component={Login} />
+        </>
+      )}
     </Stack.Navigator>
   );
 };

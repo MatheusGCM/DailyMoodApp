@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-const Moods = ({id, nome, img, selectMood, moodSelected}) => {
+const Moods = ({id, nome, txt, img, selectMood, moodSelected}) => {
   return (
     <TouchableOpacity
       activeOpacity={1}
@@ -9,6 +9,7 @@ const Moods = ({id, nome, img, selectMood, moodSelected}) => {
         selectMood({
           id,
           nome,
+          txt,
           img,
         })
       }>
