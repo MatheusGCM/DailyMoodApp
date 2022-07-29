@@ -2,10 +2,12 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   card: {
+    alignSelf: 'center',
+    width: '90%',
     backgroundColor: 'white',
-    padding: 15,
-    paddingEnd: 65,
-    marginTop: 20,
+    paddingStart: 15,
+    paddingVertical: 18,
+    // paddingEnd: 65,
     borderRadius: 20,
   },
   cardCima: {
@@ -45,8 +47,9 @@ const styles = StyleSheet.create({
     color: '#ACACAC',
     fontWeight: '400',
     lineHeight: 20,
-    paddingEnd: '17%',
-    paddingStart: '2%',
+    // paddingEnd: '17%',
+    // paddingStart: '2%',
+    marginTop: 12,
   },
 });
 

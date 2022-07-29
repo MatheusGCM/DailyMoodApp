@@ -2,51 +2,40 @@ import React from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import Atividade from '../Atividade';
 import styles from './style';
+import switchMoods from '../../function/switchMoods';
+import dateFormat from '../../function/dateFormat';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {useNavigation} from '@react-navigation/native';
-
-const Card = ({emoji, dia, humor, hora, atividade, descricao}) => {
-  const navigation = useNavigation();
-
-  let color = '';
-  if (humor === 'BEM') {
-    color = '#E24B4B';
-  } else if (humor === 'MAL') {
-    color = '#4B75E2';
-  } else {
-    color = '#4BE263';
-  }
+const Card = ({
+  id,
+  mood,
+  created_at,
+  short_description,
+  activities,
+  navigation,
+}) => {
+  const {img, txt, color} = switchMoods(mood);
+  const {dateFull, hoursFull} = dateFormat(created_at);
   return (
     <TouchableOpacity
       style={styles.card}
-      onPress={() =>
-        navigation.navigate('Details', {
-          emoji: emoji,
-          dia: dia,
-          humor: humor,
-          hora: hora,
-          atividade: atividade,
-          descricao: descricao,
-          color: color,
-        })
-      }>
+      onPress={() => navigation.navigate('Details', id)}>
       <View style={styles.cardCima}>
         <View>
-          <Image source={emoji} style={styles.cardImg} />
+          <Image source={img} style={styles.cardImg} />
         </View>
         <View>
-          <Text style={styles.txtDia}>{dia}</Text>
+          <Text style={styles.txtDia}>{dateFull}</Text>
           <View style={styles.cardCimaContent}>
-            <Text style={[styles.txtHumor, {color: color}]}>{humor}</Text>
-            <Text style={styles.txtHora}>{hora}</Text>
+            <Text style={[styles.txtHumor, {color: color}]}>{txt}</Text>
+            <Text style={styles.txtHora}>{hoursFull}</Text>
           </View>
         </View>
       </View>
-      <Atividade atividade={atividade} />
 
-      <Text numberOfLines={1} style={styles.txtDescricao}>
-        {descricao}
-      </Text>
+      <Atividade activities={activities} />
+
+      <Text style={styles.txtDescricao}>{short_description}</Text>
     </TouchableOpacity>
   );
 };
