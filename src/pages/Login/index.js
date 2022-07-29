@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   View,
   Image,
@@ -14,9 +14,8 @@ import styles from './style';
 import * as Animatable from 'react-native-animatable';
 import {Context} from '../../context/authContext';
 
-const Login = ({navigation}) => {
+const Login = ({}) => {
   const {loginUser, setIsLogged} = useContext(Context);
-  const {state} = useContext(Context);
 
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -62,19 +61,16 @@ const Login = ({navigation}) => {
           <TouchableOpacity
             style={styles.btnEntrar}
             onPress={() => {
-              if (
-                email === '' ||
-                senha === '' ||
-                email.length < 4 ||
-                senha.length < 4
-              ) {
+              var re = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
+              if (email && senha !== '' && re.test(email)) {
+                loginUser(email, senha);
+                setIsLogged(true);
+                setEmail('');
+                setSenha('');
+              } else {
                 Alert.alert('Atenção!!', 'Email ou senha inválidos');
                 return;
               }
-              loginUser(email, senha);
-              setIsLogged(true);
-              setEmail('');
-              setSenha('');
             }}>
             <Text style={styles.txtEntrar}>ENTRAR</Text>
           </TouchableOpacity>

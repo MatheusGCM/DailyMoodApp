@@ -33,18 +33,6 @@ const loginUser = dispatch => {
     }
   };
 };
-// const logoutUser = dispatch => {
-//   return async token => {
-//     try {
-//       await api.post('/oauth/revoke', {
-//         token: token,
-//       });
-//       api.defaults.headers.Authorization = `Basic ${token}`;
-//     } catch (e) {
-//       console.warn(e);
-//     }
-//   };
-// };
 const setIsLogged = dispatch => {
   return boolean => {
     dispatch({type: 'isLogged', payload: boolean});

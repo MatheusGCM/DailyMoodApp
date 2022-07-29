@@ -16,6 +16,20 @@ export async function getPhotos() {
     console.warn(error);
   }
 }
+export async function loginUser(email, senha) {
+  try {
+    const {data} = await api.post('/oauth/token', {
+      grant_type: 'password',
+      email: email,
+      password: senha,
+      client_id: '3mGWGtxIEKyhq_HGG4cq6hsTOd_zn1SuTD3_cafjUPc',
+      client_secret: '389JLi1Nd6DQ_soCI85C57ueTlMZ_JR7pRq6SJ0GaB0',
+    });
+    return data;
+  } catch (error) {
+    console.warn(error);
+  }
+}
 
 export async function addDaily(newUser) {
   try {
