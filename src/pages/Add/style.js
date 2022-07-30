@@ -46,6 +46,22 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     marginBottom: 20,
   },
+  activities: {
+    Height: 300,
+    margin: 24,
+    borderWidth: 1,
+    borderRadius: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: '',
+    active: {
+      backgroundColor: '#304FFE',
+      borderWidth: 1,
+      borderColor: '#304FFE',
+    },
+  },
   boxInput: {
     width: '90%',
     height: 90,
@@ -55,9 +71,24 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 20,
   },
-  boxButton: {
-    width: '90%',
+  colorInput: {
+    color: '#000',
+  },
+  button: {
     alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '90%',
+    height: 52,
+    borderRadius: 6,
+    marginBottom: 30,
+    backgroundColor: '#304FFE',
+  },
+  txtButton: {
+    color: 'white',
+    fontSize: 15,
+    fontWeight: '900',
+    lineHeight: 19,
   },
 });
 export default styles;

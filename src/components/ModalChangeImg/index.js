@@ -5,6 +5,7 @@ import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles';
 import {getPhotos, updateUser} from '../../Services/api';
+import Loading from '../Loading';
 
 const ModalChageImg = ({onPress, gender, navigation}) => {
   const [dataPhotos, setDataPhotos] = useState([]);
@@ -36,7 +37,7 @@ const ModalChageImg = ({onPress, gender, navigation}) => {
     return <Photos {...item} photo={photo} photoSelected={photoSelected} />;
   };
 
-  return (
+  return dataPhotos ? (
     <View>
       <TouchableOpacity style={styles.close} onPress={onPress}>
         <Icon name="close" size={20} color="#657BFB" />
@@ -62,6 +63,8 @@ const ModalChageImg = ({onPress, gender, navigation}) => {
         </TouchableOpacity>
       </View>
     </View>
+  ) : (
+    <Loading />
   );
 };
 

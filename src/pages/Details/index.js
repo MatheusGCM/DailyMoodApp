@@ -1,11 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  ActivityIndicator,
-} from 'react-native';
+import {Text, View, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconFeather from 'react-native-vector-icons/Feather';
 import styles from './style';
@@ -13,6 +7,7 @@ import {getDaily} from '../../Services/api';
 import dateFormat from '../../function/dateFormat';
 import switchMoods from '../../function/switchMoods';
 import switchActivities from '../../function/switchActivities';
+import Loading from '../../components/Loading';
 
 const Details = ({route, navigation}) => {
   const [daily, setDaily] = useState([]);
@@ -72,18 +67,7 @@ const Details = ({route, navigation}) => {
       </View>
     </View>
   ) : (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <ActivityIndicator color="#304FFE" size={50} />
-      <Text
-        style={{
-          fontSize: 20,
-          color: 'rgba(0,0,0,0.6)',
-          fontWeight: '400',
-          marginTop: 10,
-        }}>
-        Carregando
-      </Text>
-    </View>
+    <Loading />
   );
 };
 

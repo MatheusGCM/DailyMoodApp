@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, FlatList, Text, View} from 'react-native';
+import {FlatList, Text, View} from 'react-native';
 import Card from '../../components/Card';
 import styles from './style';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {getDailyEntries} from '../../Services/api';
+import Loading from '../../components/Loading';
 
 const Home = ({navigation}) => {
   const [dadosDaily, setDadosDaily] = useState([]);
@@ -42,18 +43,7 @@ const Home = ({navigation}) => {
       )}
     />
   ) : (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <ActivityIndicator color="#304FFE" size={50} />
-      <Text
-        style={{
-          fontSize: 20,
-          color: 'rgba(0,0,0,0.6)',
-          fontWeight: '400',
-          marginTop: 10,
-        }}>
-        Carregando
-      </Text>
-    </View>
+    <Loading />
   );
 };
 

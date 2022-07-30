@@ -1,5 +1,4 @@
-/* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Text,
   View,
@@ -7,23 +6,22 @@ import {
   Modal,
   ScrollView,
   TextInput,
+  Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './style';
 import dadosMood from '../../mocks/dadosMood';
-import dadosAtividade from '../../mocks/dadosAtividade';
 import Moods from '../../components/Moods';
 import Atv from '../../components/Atv';
 import Data from '../../components/Dates';
 
-import {addDaily} from '../../Services/api';
+import {addDaily, getActivities} from '../../Services/api';
+import Loading from '../../components/Loading';
 
 function Add({navigation}) {
   const [moodSelected, setMoodSelected] = useState([]);
-
-  const [atividades, setAtividades] = useState([...dadosAtividade]);
-  const [activitySelected, setActivitySelected] = useState([]);
-  const [cont, setCont] = useState(0);
+  const [activities, setActivities] = useState([]);
+  const [listDataActive, setListDataActive] = useState([]);
   const [daily, setDaily] = useState({
     daily_entry: {
       mood: '',
@@ -31,6 +29,14 @@ function Add({navigation}) {
       description: '',
     },
   });
+
+  useEffect(() => {
+    async function getAtv() {
+      const responseActivities = await getActivities();
+      setActivities(responseActivities);
+    }
+    getAtv();
+  }, []);
 
   const selectMood = moodSelecionado => {
     setMoodSelected(moodSelecionado);
@@ -41,57 +47,15 @@ function Add({navigation}) {
       },
     }));
   };
-  const selectActivity = atividadeSelecionada => {
-    if (atividadeSelecionada.selecionado) {
-      //Mudar o valor da atividade já selecionada para false
-      setAtividades(atividadesAnteriores =>
-        atividadesAnteriores.map(atividade => ({
-          ...atividade,
-          selecionado: !(
-            atividade.id === atividadeSelecionada.id || !atividade.selecionado
-          ),
-        })),
-      );
-      const lista = activitySelected.filter(item => {
-        return item !== atividadeSelecionada.id;
-      });
-      setActivitySelected([...lista]);
-      setDaily(itens => ({
-        daily_entry: {
-          ...itens.daily_entry,
-          activity_ids: [...lista],
-        },
-      }));
-      setCont(cont - 1);
+  const CreateDailyEntry = () => {
+    if (daily.daily_entry.mood !== '') {
+      addDaily(daily);
+      navigation.navigate('Home');
     } else {
-      if (cont < 3) {
-        //Selecionar até 3 atividades
-        setActivitySelected([...activitySelected, atividadeSelecionada.id]);
-        setDaily(itens => ({
-          daily_entry: {
-            ...itens.daily_entry,
-            activity_ids: [
-              ...itens.daily_entry.activity_ids,
-              atividadeSelecionada.id,
-            ],
-          },
-        }));
-        setAtividades(atividadesAnteriores =>
-          atividadesAnteriores.map(atividade => ({
-            ...atividade,
-            selecionado:
-              atividade.id === atividadeSelecionada.id || atividade.selecionado,
-          })),
-        );
-        setCont(cont + 1);
-      }
+      Alert.alert('Atenção!!', 'Informe seu humor');
     }
   };
-  const CreateDailyEntry = () => {
-    addDaily(daily);
-    navigation.navigate('Home');
-  };
-  return (
+  return activities ? (
     <Modal
       animationType={'fade'}
       onRequestClose={() => {
@@ -112,14 +76,7 @@ function Add({navigation}) {
               <Data />
             </View>
           </View>
-          <View
-            style={{
-              marginBottom: 50,
-              flexDirection: 'row',
-              justifyContent: 'space-around',
-              width: '85%',
-              alignSelf: 'center',
-            }}>
+          <View style={styles.boxMood}>
             {dadosMood.map(item => (
               <Moods
                 key={item.id}
@@ -129,35 +86,61 @@ function Add({navigation}) {
               />
             ))}
           </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              flexWrap: 'wrap',
-              alignSelf: 'center',
-              justifyContent: 'center',
-              width: '90%',
-              borderWidth: 1,
-              borderRadius: 15,
-              paddingVertical: 20,
-              marginBottom: 20,
-            }}>
-            {atividades.map(item => (
-              <Atv key={item.id} {...item} selectActivity={selectActivity} />
-            ))}
+          <View style={styles.boxAtividade}>
+            {activities.map(({id, name}, index) => {
+              return (
+                <TouchableOpacity
+                  key={index}
+                  activeOpacity={1}
+                  onPress={() => {
+                    if (listDataActive.length < 3) {
+                      setListDataActive([...listDataActive, id]);
+
+                      setDaily(prevState => ({
+                        daily_entry: {
+                          ...prevState.daily_entry,
+                          activity_ids: [
+                            ...prevState.daily_entry.activity_ids,
+                            id,
+                          ],
+                        },
+                      }));
+                    } else if (!listDataActive.includes(id)) {
+                      Alert.alert(
+                        'Atenção!!',
+                        'Selecionar o máximo de 3 itens',
+                      );
+                    }
+                    if (listDataActive.includes(id)) {
+                      const fullListActives = listDataActive.filter(active => {
+                        return active !== id;
+                      });
+                      setListDataActive([...fullListActives]);
+
+                      setDaily(prevState => ({
+                        daily_entry: {
+                          ...prevState.daily_entry,
+                          activity_ids: [...fullListActives],
+                        },
+                      }));
+                    }
+                  }}>
+                  <Atv
+                    key={index}
+                    name={name}
+                    style={
+                      listDataActive.includes(id) && styles.activities.active
+                    }
+                    color={listDataActive.includes(id) ? '#eee' : '#111'}
+                  />
+                </TouchableOpacity>
+              );
+            })}
           </View>
 
-          <View
-            style={{
-              width: '90%',
-              height: 90,
-              alignSelf: 'center',
-              borderWidth: 1,
-              borderRadius: 20,
-              paddingHorizontal: 10,
-              marginBottom: 20,
-            }}>
+          <View style={styles.boxInput}>
             <TextInput
-              style={{color: 'black'}}
+              style={styles.colorInput}
               placeholder="Escreva aqui o que aconteceu hoje..."
               placeholderTextColor="#969696"
               multiline
@@ -173,30 +156,15 @@ function Add({navigation}) {
             />
           </View>
           <TouchableOpacity
-            style={{
-              alignSelf: 'center',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '90%',
-              height: 52,
-              borderRadius: 6,
-              marginBottom: 30,
-              backgroundColor: '#304FFE',
-            }}
+            style={styles.button}
             onPress={() => CreateDailyEntry()}>
-            <Text
-              style={{
-                color: 'white',
-                fontSize: 15,
-                fontWeight: '900',
-                lineHeight: 19,
-              }}>
-              SALVAR
-            </Text>
+            <Text style={styles.txtButton}>SALVAR</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
     </Modal>
+  ) : (
+    <Loading />
   );
 }
 

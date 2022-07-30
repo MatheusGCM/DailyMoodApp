@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {
-  ActivityIndicator,
   Image,
   Modal,
   ScrollView,
@@ -15,6 +14,7 @@ import Button from '../../components/Button';
 import ModalChageImg from '../../components/ModalChangeImg';
 import dateFormat from '../../function/dateFormat';
 import {getUser, updateUser} from '../../Services/api';
+import Loading from '../../components/Loading';
 
 const EditProfile = ({navigation, route}) => {
   const user = route.params;
@@ -155,18 +155,7 @@ const EditProfile = ({navigation, route}) => {
       </View>
     </ScrollView>
   ) : (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <ActivityIndicator color="#304FFE" size={50} />
-      <Text
-        style={{
-          fontSize: 20,
-          color: 'rgba(0,0,0,0.6)',
-          fontWeight: '400',
-          marginTop: 10,
-        }}>
-        Carregando
-      </Text>
-    </View>
+    <Loading />
   );
 };
 
