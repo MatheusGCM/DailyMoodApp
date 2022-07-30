@@ -3,9 +3,14 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    width: '80%',
+  },
+  box: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around',
-    marginBottom: 12,
+  },
+  flex: {
+    flexDirection: 'row',
   },
   icon: {
     marginHorizontal: 8,

@@ -6,24 +6,15 @@ import styles from './style';
 
 const Atividade = ({activities}) => {
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        width: '80%',
-      }}>
+    <View style={styles.container}>
       {activities.map((item, i) => {
         const {nameIcon, nameActivities} = switchActivities(item.name);
         return (
-          <View
-            key={String(item.id)}
-            style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View key={String(item.id)} style={styles.box}>
             {i > 0 && (
               <Icon style={styles.icon} name="circle" color="black" size={5} />
             )}
-            <View
-              style={{
-                flexDirection: 'row',
-              }}>
+            <View style={styles.flex}>
               <Icon name={nameIcon} size={20} color="#111" />
               <Text style={styles.txtIcon}>{nameActivities}</Text>
             </View>

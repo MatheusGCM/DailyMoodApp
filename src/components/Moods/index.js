@@ -1,6 +1,6 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
+import styles from './style';
 const Moods = ({id, nome, txt, img, selectMood, moodSelected}) => {
   return (
     <TouchableOpacity
@@ -32,30 +32,5 @@ const Moods = ({id, nome, txt, img, selectMood, moodSelected}) => {
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-  },
-  boxImg: {
-    width: 54,
-    height: 53,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 27,
-  },
-  img: {
-    width: 43,
-    height: 43,
-    // borderColor: '#304FFE',
-    // borderWidth: 5,
-    // borderRadius: 20,
-  },
-  txtMood: {
-    fontSize: 11,
-    fontWeight: '700',
-    lineHeight: 18,
-  },
-});
 
 export default Moods;

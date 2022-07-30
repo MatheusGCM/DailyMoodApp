@@ -2,6 +2,7 @@
 import React, {useContext, useEffect} from 'react';
 import {ActivityIndicator, Image, View} from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import styles from './style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import api from '../../Services/api';
@@ -35,20 +36,9 @@ const Preload = () => {
   }, []);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#304FFE',
-      }}>
-      <Animatable.View
-        animation="flipInY"
-        style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Image
-          source={require('../../assets/login.png')}
-          style={{width: 228, height: 228, marginBottom: 100}}
-        />
+    <View style={styles.container}>
+      <Animatable.View animation="flipInY" style={styles.boxImg}>
+        <Image source={require('../../assets/login.png')} style={styles.img} />
         <ActivityIndicator color="#fff" size={40} />
       </Animatable.View>
     </View>
